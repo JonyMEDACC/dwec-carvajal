@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tema 2 - Navegadores</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container">
+    <span class="navbar-brand">Jonatan Carvajal Reynaga</span>
+    <div>
+      <a class="btn btn-outline-light btn-sm" href="index.html">Navegadores</a>
+      <a class="btn btn-outline-light btn-sm" href="interaccion.html">Interacción</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container mt-4">
+  <h1>Navegadores y motores</h1>
+
+  <div class="table-responsive mt-3">
+    <table class="table table-bordered">
+      <thead class="table-dark">
+        <tr>
+          <th>Navegador</th>
+          <th>Empresa</th>
+          <th>Motor</th>
+          <th>Motor JavaScript</th>
+          <th>Chromium</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Chrome</td><td>Google</td><td>Blink</td><td>V8</td><td>si</td></tr>
+        <tr><td>Firefox</td><td>Mozilla</td><td>Gecko</td><td>SpiderMonkey</td><td>No</td></tr>
+        <tr><td>Safari</td><td>Apple</td><td>WebKit</td><td>JavaScriptCore</td><td>No</td></tr>
+        <tr><td>Edge</td><td>Microsoft</td><td>Blink</td><td>V8</td><td>si</td></tr>
+        <tr><td>Opera</td><td>Opera</td><td>Blink</td><td>V8</td><td>si</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="h4 mt-4">Explicación</h2>
+  <p>
+    Chrome, Edge y Opera comparten Chromium y usan Blink, por eso muchas paginas
+    funcionan de forma parecida en ellos. Firefox utiliza Gecko y Safari utiliza WebKit.
+    Esto es importante porque una misma web puede verse o funcionar de forma diferente
+    según el navegador. Por eso conviene probar una página en varios navegadores,
+    sobre todo si usan motores distintos.
+  </p>
+
+  <div class="card mt-4">
+    <div class="card-body">
+      <h2 class="h5">Ejemplo de compatibilidad</h2>
+      <p>
+        Una característica moderna de CSS puede no funcionar igual en todos los navegadores.
+        Un ejemplo es CSS Anchor Positioning.
+      </p>
+      <a href="https://caniuse.com/css-anchor-positioning" target="_blank">
+        Ver ejemplo en Can I use
+      </a>
+      <p class="mt-2 mb-0">Fecha de consulta: 2 de octubre de 2026.</p>
+    </div>
+  </div>
+
+  <h2 class="h4 mt-4">Reflexión</h2>
+  <p>
+    Primero probaría la web en Chrome y Firefox porque utilizan motores distintos.
+    También la probaría en Safari si se va a usar en iPhone o Mac. También
+    comprobaría que se vea bien en móvil usando el modo dispositivo del navegador.
+  </p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
