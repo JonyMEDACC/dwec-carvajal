@@ -55,4 +55,4 @@ Guarda las capturas dentro de la carpeta `capturas`.
 ## Uso de IA
 
 He utilizado ChatGPT para ayudarme a organizar el trabajo y revisar el código esto incluido esta creado con la IA
-Después he revisado el contenido y he probado personalmente la página este readme esta creado por la IA 
+Después he revisado el contenido y he probado personalmente la página este readme esta creado por la IA .
