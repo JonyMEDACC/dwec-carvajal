@@ -48,4 +48,4 @@ He usado el número 8 como ejemplo. Cada vuelta crea un badge y el color se elig
 
 ## Uso de IA
 
-He utilizado la IA CHAT GPT como apoyo para organizar la práctica y crear este readme, revisar el código y comprobar los requisitos del enunciado. Después he revisado el contenido, he probado personalmente todos los botones, he comprobado los resultados con la consola 
+He utilizado la IA CHAT GPT como apoyo para organizar la práctica y crear este readme, revisar el código y comprobar los requisitos del enunciado. Después he revisado el contenido, he probado personalmente todos los botones, he comprobado los resultados con la consola  
