@@ -48,4 +48,4 @@ Al pasar un callback de `function` a flecha, el código queda más corto y direc
 
 ## Uso de IA
 
-He utilizado ChatGPT como apoyo para organizar la práctica, revisar los requisitos y comprobar el código. Después he revisado el contenido, he probado personalmente los botones y he realizado mis propias capturas en mi equipo esto incluido fue generado con IA
+He utilizado ChatGPT como apoyo para organizar la práctica, revisar los requisitos, comprobar el código y ayudarme con la redacción del README. Después he revisado el contenido, he probado personalmente todos los botones y he realizado mis propias capturas en mi equipo esto incluido esta realizado con IA 
