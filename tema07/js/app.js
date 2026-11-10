@@ -175,7 +175,11 @@ document.querySelector("#numeros3").textContent = `const numeros = [${numeros.jo
 //       recorre lista con for…of, llama a operacion con cada elemento, guarda lo que devuelve
 //       en un array nuevo y, al final, devuelve ese array.
 function transformar(lista, operacion) {
-
+  const resultado = [];
+  for (const elemento of lista) {
+    resultado.push(operacion(elemento));
+  }
+  return resultado;
 }
 
 // Ya está hecha: escribe en #salida3 tu resultado, el de map y numeros
@@ -204,11 +208,17 @@ function verDobles() {
 
 function verCuadrados() {
   // TODO: como verDobles(), con el cuadrado de cada número (n ** 2).
+  const resultado = transformar(numeros, (n) => n ** 2);
+  mostrar3("cuadrados", resultado, numeros.map((n) => n ** 2));
+  console.log("Ejercicio 3: cuadrados →", resultado);
 }
 
 function verAbsolutos() {
   // TODO: como verDobles(), con el valor absoluto (Math.abs). Pista: Math.abs ya es una función,
   //       así que se puede pasar tal cual, sin paréntesis.
+  const resultado = transformar(numeros, Math.abs);
+  mostrar3("absolutos", resultado, numeros.map(Math.abs));
+  console.log("Ejercicio 3: absolutos →", resultado);
 }
 
 
@@ -219,8 +229,12 @@ function verAbsolutos() {
 // TODO: crearContador(paso) guarda una variable cuenta que empieza en 0 y DEVUELVE una función.
 //       Cada vez que se llama a esa función, suma paso a cuenta y devuelve el valor nuevo.
 //       paso vale 1 por defecto.
-function crearContador(paso) {
-
+function crearContador(paso = 1) {
+  let cuenta = 0;
+  return function () {
+    cuenta += paso;
+    return cuenta;
+  };
 }
 
 const contarDeUno = crearContador();
@@ -235,6 +249,9 @@ function sumarUno() {
 
 function sumarCinco() {
   // TODO: lo mismo con contarDeCinco y #cuenta5.
+  const valor = contarDeCinco();
+  document.querySelector("#cuenta5").textContent = valor;
+  console.log("Ejercicio 4: de 5 en 5 →", valor);
 }
 
 
@@ -254,17 +271,53 @@ class Alumno {
   // TODO: media(): 0 si no hay notas; si hay, la suma con reduce (con flecha) entre el número de notas.
   // TODO: presentarse(): devuelve «Lucía Martín, de 2.º DAW».
   //       Recuerda: en una clase, los métodos van sin function y sin comas entre ellos.
+  anadirNota(nota) {
+    if (Number.isNaN(nota) || nota < 0 || nota > 10) {
+      return false;
+    }
+    this.notas.push(nota);
+    return true;
+  }
+
+  media() {
+    if (this.notas.length === 0) {
+      return 0;
+    }
+    const total = this.notas.reduce((suma, nota) => suma + nota, 0);
+    return total / this.notas.length;
+  }
+
+  presentarse() {
+    return `${this.nombre}, de ${this.curso}`;
+  }
 }
 
 class AlumnoFCT extends Alumno {
   // TODO: constructor(nombre, curso, empresa): primero super(nombre, curso) y después guarda la empresa.
   // TODO: presentarse(): la frase de Alumno (super.presentarse()) más «, en prácticas en TecnoSur».
+  constructor(nombre, curso, empresa) {
+    super(nombre, curso);
+    this.empresa = empresa;
+  }
+
+  presentarse() {
+    return `${super.presentarse()}, en prácticas en ${this.empresa}`;
+  }
 }
 
 const alumnos = [];
 
 // TODO: cuando tengas las clases, crea aquí dos alumnos de partida y añádelos a alumnos con push:
 //       un Alumno con dos notas y un AlumnoFCT con otras dos.
+const alumno1 = new Alumno("Jonatan Carvajal Reynaga", "2.º DAW");
+alumno1.anadirNota(8);
+alumno1.anadirNota(7.5);
+alumnos.push(alumno1);
+
+const alumno2 = new AlumnoFCT("Sara Gil", "2.º DAW", "TecnoSur");
+alumno2.anadirNota(6);
+alumno2.anadirNota(9);
+alumnos.push(alumno2);
 
 // Ya está hecha: pinta una tarjeta por alumno en #listaAlumnos y actualiza #totalAlumnos
 function pintarAlumnos() {
@@ -314,6 +367,45 @@ function crearAlumno() {
   // TODO: si hay notas, sepáralas con split(",") y conviértelas con map((texto) => Number(texto.trim())).
   //       Si alguna no es válida (some), error en #error5 y no sigas. Si todas lo son, añádelas con anadirNota().
   // TODO: añade el alumno a alumnos, oculta el error, vacía las casillas y llama a pintarAlumnos().
+  const nombreInput = document.querySelector("#nombre5");
+  const cursoInput = document.querySelector("#curso5");
+  const empresaInput = document.querySelector("#empresa5");
+  const notasInput = document.querySelector("#notas5");
+  const error = document.querySelector("#error5");
+
+  const nombre = nombreInput.value.trim();
+  const curso = cursoInput.value.trim();
+  const empresa = empresaInput.value.trim();
+  const notasTexto = notasInput.value.trim();
+
+  if (nombre === "") {
+    error.textContent = "Escribe el nombre del alumno.";
+    error.classList.remove("d-none");
+    return;
+  }
+
+  const nuevoAlumno = empresa === ""
+    ? new Alumno(nombre, curso)
+    : new AlumnoFCT(nombre, curso, empresa);
+
+  if (notasTexto !== "") {
+    const notas = notasTexto.split(",").map((texto) => Number(texto.trim()));
+    const hayNoValidas = notas.some((nota) => Number.isNaN(nota) || nota < 0 || nota > 10);
+    if (hayNoValidas) {
+      error.textContent = "Las notas deben ser números entre 0 y 10.";
+      error.classList.remove("d-none");
+      return;
+    }
+    notas.forEach((nota) => nuevoAlumno.anadirNota(nota));
+  }
+
+  alumnos.push(nuevoAlumno);
+  error.classList.add("d-none");
+  nombreInput.value = "";
+  empresaInput.value = "";
+  notasInput.value = "";
+  pintarAlumnos();
+  console.log("Ejercicio 5: alumno creado →", nuevoAlumno);
 }
 
 pintarAlumnos();
